@@ -65,12 +65,12 @@ pub enum Error {
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum HmacPurpose {
     /// HMAC is used to re-enable JTAG after soft-disabling it.
-    ToJtag     = 6,
+    ToJtag = 6,
     /// HMAC is provided to the digital signature peripheral to decrypt the
     /// private key.
-    ToDs       = 7,
+    ToDs = 7,
     /// Let the user provide a message and read the result.
-    ToUser     = 8,
+    ToUser = 8,
     /// HMAC is used for both the digital signature or JTAG.
     ToDsOrJtag = 5,
 }
@@ -98,6 +98,7 @@ impl<'d> Hmac<'d> {
 
         PeripheralClockControl::enable(PeripheralEnable::Sha);
         PeripheralClockControl::enable(PeripheralEnable::Hmac);
+        PeripheralClockControl::enable(PeripheralEnable::Ds);
 
         Self {
             hmac,

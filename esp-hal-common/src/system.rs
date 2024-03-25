@@ -100,6 +100,8 @@ pub enum Peripheral {
     ParlIo,
     #[cfg(hmac)]
     Hmac,
+    #[cfg(ds)]
+    Ds,
     #[cfg(ecc)]
     Ecc,
     #[cfg(soc_etm)]
@@ -372,6 +374,11 @@ impl PeripheralClockControl {
                 system
                     .rsa_pd_ctrl()
                     .modify(|_, w| w.rsa_mem_pd().clear_bit());
+            }
+            #[cfg(ds)]
+            Peripheral::Ds => {
+                perip_clk_en1.modify(|_, w| w.crypto_ds_clk_en().set_bit());
+                perip_rst_en1.modify(|_, w| w.crypto_ds_rst().clear_bit());
             }
             #[cfg(hmac)]
             Peripheral::Hmac => {
