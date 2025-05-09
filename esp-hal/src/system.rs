@@ -105,6 +105,9 @@ pub enum Peripheral {
     /// HMAC peripheral (Hash-based Message Authentication Code).
     #[cfg(hmac)]
     Hmac,
+    /// DS peripheral (Hash-based Message Authentication Code).
+    #[cfg(ds)]
+    Ds,
     /// ECC peripheral (Elliptic Curve Cryptography).
     #[cfg(ecc)]
     Ecc,
@@ -330,6 +333,11 @@ impl PeripheralClockControl {
                 perip_clk_en1.modify(|_, w| w.crypto_hmac_clk_en().set_bit());
                 perip_rst_en1.modify(|_, w| w.crypto_hmac_rst().clear_bit());
             }
+            #[cfg(ds)]
+            Peripheral::Ds => {
+                perip_clk_en1.modify(|_, w| w.crypto_ds_clk_en().set_bit());
+                perip_rst_en1.modify(|_, w| w.crypto_ds_rst().clear_bit());
+            }
             #[cfg(ecc)]
             Peripheral::Ecc => {
                 perip_clk_en1.modify(|_, w| w.crypto_ecc_clk_en().set_bit());
@@ -538,6 +546,11 @@ impl PeripheralClockControl {
             Peripheral::Hmac => {
                 perip_rst_en1.modify(|_, w| w.crypto_hmac_rst().set_bit());
                 perip_rst_en1.modify(|_, w| w.crypto_hmac_rst().clear_bit());
+            }
+            #[cfg(ds)]
+            Peripheral::Ds => {
+                perip_rst_en1.modify(|_, w| w.crypto_ds_rst().set_bit());
+                perip_rst_en1.modify(|_, w| w.crypto_ds_rst().clear_bit());
             }
             #[cfg(ecc)]
             Peripheral::Ecc => {
