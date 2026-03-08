@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members  = ["xtask"]
+members  = ["xtask", "esp-hal", "esp-ds", "examples/peripheral/ds"]
 exclude  = [
     "esp-alloc",
     "esp-backtrace",

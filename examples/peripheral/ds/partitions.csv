@@ -1,0 +1,4 @@
+# same as esp_secure_cert_mgr
+# Name, Type, SubType, Offset, Size, Flags
+esp_secure_cert,63,6,0xd000,8K,
+factory,app,factory,0x20000,1M,

@@ -387,6 +387,8 @@ unstable_driver! {
     pub mod rsa;
     #[cfg(soc_has_sha)]
     pub mod sha;
+    #[cfg(soc_has_ds)]
+    pub mod ds;
     #[cfg(touch)]
     pub mod touch;
     #[cfg(soc_has_trace0)]
